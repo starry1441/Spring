@@ -1,0 +1,37 @@
+2021-06-27 18:22:32.660  INFO 13416 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-06-27 18:22:32.664 DEBUG 13416 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2021-06-27 18:22:32.664 DEBUG 13416 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2021-06-27 18:22:32.664 DEBUG 13416 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2021-06-27 18:22:32.665 DEBUG 13416 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@72a00be8
+2021-06-27 18:22:32.666 DEBUG 13416 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@f36a595
+2021-06-27 18:22:32.666 DEBUG 13416 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2021-06-27 18:22:32.666  INFO 13416 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2021-06-27 18:22:32.678 DEBUG 13416 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/static/css/login.css?v=23", parameters={masked}
+2021-06-27 18:22:32.691 DEBUG 13416 --- [http-nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/], Classpath [resources/], Classpath [static/], Classpath [public/], ServletContext [/]]
+2021-06-27 18:22:32.696 DEBUG 13416 --- [http-nio-8080-exec-1] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2021-06-27 18:22:32.697 DEBUG 13416 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2021-06-27 18:22:32.706 DEBUG 13416 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error?v=23", parameters={masked}
+2021-06-27 18:22:32.708 DEBUG 13416 --- [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#errorHtml(HttpServletRequest, HttpServletResponse)
+2021-06-27 18:22:32.744 DEBUG 13416 --- [http-nio-8080-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, text/html;q=0.8]
+2021-06-27 18:22:32.749 DEBUG 13416 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 404
+2021-06-27 18:22:37.702 DEBUG 13416 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/css/login.css?v=23", parameters={masked}
+2021-06-27 18:22:37.704 DEBUG 13416 --- [http-nio-8080-exec-2] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/], Classpath [resources/], Classpath [static/], Classpath [public/], ServletContext [/]]
+2021-06-27 18:22:37.712 DEBUG 13416 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-06-27 18:22:41.046 DEBUG 13416 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/login.html?v=2", parameters={masked}
+2021-06-27 18:22:41.047 DEBUG 13416 --- [http-nio-8080-exec-3] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/], Classpath [resources/], Classpath [static/], Classpath [public/], ServletContext [/]]
+2021-06-27 18:22:41.048 DEBUG 13416 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-06-27 18:22:41.069 DEBUG 13416 --- [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/css/conmmon.css", parameters={}
+2021-06-27 18:22:41.071 DEBUG 13416 --- [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/css/login.css", parameters={}
+2021-06-27 18:22:41.071 DEBUG 13416 --- [http-nio-8080-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/], Classpath [resources/], Classpath [static/], Classpath [public/], ServletContext [/]]
+2021-06-27 18:22:41.072 DEBUG 13416 --- [http-nio-8080-exec-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/], Classpath [resources/], Classpath [static/], Classpath [public/], ServletContext [/]]
+2021-06-27 18:22:41.072 DEBUG 13416 --- [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/js/jquery.min.js", parameters={}
+2021-06-27 18:22:41.072 DEBUG 13416 --- [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/img/logo2.jpg", parameters={}
+2021-06-27 18:22:41.073 DEBUG 13416 --- [http-nio-8080-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/], Classpath [resources/], Classpath [static/], Classpath [public/], ServletContext [/]]
+2021-06-27 18:22:41.074 DEBUG 13416 --- [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-06-27 18:22:41.074 DEBUG 13416 --- [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-06-27 18:22:41.074 DEBUG 13416 --- [http-nio-8080-exec-6] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/], Classpath [resources/], Classpath [static/], Classpath [public/], ServletContext [/]]
+2021-06-27 18:22:41.077 DEBUG 13416 --- [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-06-27 18:22:41.078 DEBUG 13416 --- [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-06-27 18:22:41.084 DEBUG 13416 --- [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/img/cat.jpg", parameters={}
+2021-06-27 18:22:41.084 DEBUG 13416 --- [http-nio-8080-exec-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [Classpath [META-INF/resources/], Classpath [resources/], Classpath [static/], Classpath [public/], ServletContext [/]]
+2021-06-27 18:22:41.093 DEBUG 13416 --- [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
