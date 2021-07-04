@@ -39,7 +39,7 @@ public class App {
 //        System.out.println(loginController);
 //        System.out.println(Introspector.decapitalize("LoginController"));
         //关闭容器
-        ((ClassPathXmlApplicationContext)context).close();
+        ((ClassPathXmlApplicationContext) context).close();
     }
 
 }
