@@ -41,7 +41,7 @@ public class MVCController {
     @RequestMapping("/index7")
     @ResponseBody
     public String getIndex7() throws JsonProcessingException {
-        User user  = new User();
+        User user = new User();
         user.setUsername("Java");
         user.setPassword("123");
         //将对象转换成 json 字符串
@@ -66,7 +66,7 @@ public class MVCController {
     @RequestMapping("/index3")
     public String getIndex3(HttpServletResponse response, HttpServletRequest request) {
         response.setStatus(301);
-        response.setHeader("Location","http://localhost:8080/index.html");
+        response.setHeader("Location", "http://localhost:8080/index.html");
         return null;
     }
 
