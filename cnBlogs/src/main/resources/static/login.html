@@ -45,14 +45,14 @@
 <script src="js/jquery.min.js"></script>
 <script>
     function mysub() {
-        jQuery.getJSON("/user/login", {
-            "username": jQuery("#username").val(),
-            "password": jQuery("#password").val()
+        jQuery.getJSON("/api/user/login", {
+            "username": jQuery("#username").val().trim(),
+            "password": jQuery("#password").val().trim()
         }, function (data) {
-            if (data.status == 1) {
-                alert(data.data);
+            if (data != null && data.data != null && data.status == 0 && data.data.id > 0) {
+                location.href = "myblog_list.html";
             } else {
-                alert("登陆失败");
+                alert("用户名或比吗错误，请重新输入！");
             }
         });
     }
