@@ -45,12 +45,13 @@
 <script src="js/jquery.min.js"></script>
 <script>
     function mysub() {
+        //todo:非空效验
         jQuery.getJSON("/api/user/login", {
             "username": jQuery("#username").val().trim(),
             "password": jQuery("#password").val().trim()
         }, function (data) {
             if (data != null && data.data != null && data.status == 0 && data.data.id > 0) {
-                location.href = "myblog_list.html";
+                location.href = "myblog_list.html?uid="+data.data.id;
             } else {
                 alert("用户名或比吗错误，请重新输入！");
             }

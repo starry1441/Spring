@@ -33,7 +33,7 @@
 <div class="blog-edit-container">
     <!-- 标题编辑区 -->
     <div class="title">
-        <input type="text" placeholder="在这里写下文章标题">
+        <input id="title" name="title" type="text" placeholder="在这里写下文章标题">
         <button onclick="mysub()">发布文章</button>
     </div>
     <!-- 创建编辑器标签 -->
@@ -56,6 +56,32 @@
 
     // 提交
     function mysub() {
+        //标题
+        var title = jQuery("#title").val();
+        //正文
+        var content = editor.getHTML();
+        //todo：非空效验
+
+        //将当前页面的内容提交给后端
+        jQuery.getJSON("/api/art/add",
+            {
+                "title":title,
+                "content":content
+            },
+            function (data) {
+                if (data != null && data.data != null && data.data.id > 0) {
+                    //成功添加文章
+                    alert("恭喜文章添加成功！");
+                    if (confirm("是否继续添加文章？")) {
+                        //需要刷新页面
+                        location.href = location.href;
+                    }else {
+                        location.href = "myblog_list.html?uid=" + data.data.uid;
+                    }
+                }else {
+                    alert("抱歉操作失败，请重试！");
+                }
+            });
         // alert(editor.getHTML());
     }
 </script>
