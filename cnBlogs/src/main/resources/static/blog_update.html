@@ -69,6 +69,8 @@
             function (data) {
                 if (data != null && data.status == 0 && data.data.id > 0) {
 
+
+
                     var turndownService = new TurndownService();
 
                     //添加标题
@@ -110,7 +112,13 @@
         var title = jQuery("#title").val();
         //正文
         var content = editor.getHTML();
-        //todo：非空效验
+        if(title == null || title == "") {
+            alert("请输入标题");
+            return;
+        }else if (content == null || content == "") {
+            alert("请输入文章内容");
+            return;
+        }
         //将当前页面的内容提交给后端
         jQuery.getJSON("/api/art/update",
             {

@@ -13,11 +13,11 @@
 <body>
 <!-- 导航栏 -->
 <div class="nav">
-    <img src="img/logo2.jpg" alt="">
+<!--    <img src="img/logo2.jpg" alt="">-->
     <span class="title">我的博客系统</span>
     <!-- 用来占据中间位置 -->
     <span class="spacer"></span>
-    <a href="blog_list.html">主页</a>
+    <a id="main" href="">主页</a>
     <a href="blog_edit.html">写博客</a>
     <a href="login.html">登陆</a>
 </div>
@@ -81,6 +81,8 @@
                 jQuery("#createtime").html(ctime);
                 //设置文章的正文信息
                 jQuery("#content").html(data.data.content);
+                //设置主页跳转
+                jQuery("#main").attr("href","myblog_list.html?uid=" + data.data.uid);
             } else {
                 alert("抱歉操作失败，请重试！");
             }
