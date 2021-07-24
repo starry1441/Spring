@@ -159,7 +159,7 @@ public class UserController {
     @RequestMapping("/reg")
     public String regin(String username, String password,
                         @RequestPart MultipartFile file) throws IOException {
-        // todo:非空效验
+        //非空效验
         // 1.动态获取当前项目的路径
 //        String path = ClassUtils.getDefaultClassLoader().
 //                getResource("static").getPath();

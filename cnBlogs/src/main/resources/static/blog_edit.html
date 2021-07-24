@@ -14,6 +14,7 @@
     <!-- 引入 editor.md 的依赖 -->
     <link rel="stylesheet" href="editor.md/css/editormd.min.css"/>
     <script src="js/jquery.min.js"></script>
+    <script src="js/mytools.js"></script>
     <script src="editor.md/editormd.js"></script>
 </head>
 
@@ -53,6 +54,9 @@
         path: "editor.md/lib/",
         saveHTMLToTextarea: true //
     });
+
+    var uid = getParamValue("uid");
+    jQuery("#main").attr("href","myblog_list.html?uid=" + uid);
 
     // 提交
     function mysub() {
