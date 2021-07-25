@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.usermanager.mapper.UserMapper">
+
+    <insert id="add">
+        insert into userinfo(username,name,password,sex,age,address,qq,email
+        <if test="isadmin!=0">
+            ,isadmin
+        </if>
+        )
+        values(#{username},#{name},#{password},#{sex},#{age},#{address},#{qq},#{email}
+        <if test="isadmin!=0">
+            ,#{isadmin}
+        </if>
+        )
+    </insert>
+
+    <update id="update">
+        update userinfo set
+        name=#{name},
+        sex=#{sex},
+        age=#{age},
+        address=#{address},
+        qq=#{qq},
+        email=#{email}
+        where id=#{id}
+    </update>
+
+    <select id="login" resultType="com.example.usermanager.model.UserInfo">
+        select * from userinfo where username=#{username} and password=#{password}
+    </select>
+
+    <select id="getUser" resultType="com.example.usermanager.model.UserInfo">
+        select * from userinfo where id=#{id}
+    </select>
+
+    <select id="getListByPage" resultType="com.example.usermanager.model.UserInfo">
+        select * from userinfo
+        <where>
+            <if test="name!=''">
+                and name=#{name}
+            </if>
+            <if test="address!=''">
+                and address=#{address}
+            </if>
+            <if test="email!=''">
+                and email=#{email}
+            </if>
+            <if test="isadmin==0">
+                and isadmin=#{isadmin}
+            </if>
+        </where>
+        order by id desc
+        limit #{skipCount},#{psize}
+    </select>
+
+</mapper>

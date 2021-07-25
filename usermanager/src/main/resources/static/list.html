@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!-- 指定字符集 -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>用户信息管理系统</title>
+    <!-- 1. 导入CSS的全局样式 -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- 2. jQuery导入，建议使用1.9以上的版本 -->
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <!-- 3. 导入bootstrap的js文件 -->
+    <!-- <script src="js/bootstrap.min.js"></script>-->
+    <style type="text/css">
+        td, th {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3 style="text-align: center;margin-bottom: 50px;">用户信息列表</h3>
+    <div style="float: left;">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="ipt_name">姓名</label>
+                <input name="name" type="text" class="form-control" id="ipt_name">
+            </div>
+            <div class="form-group">
+                <label for="ipt_address">籍贯</label>
+                <input name="address" type="text" class="form-control" id="ipt_address">
+            </div>
+            <div class="form-group">
+                <label for="ipt_email">邮箱</label>
+                <input name="email" type="email" class="form-control" id="ipt_email">
+            </div>
+            <button id="submit1" type="button" class="btn btn-default" onclick="oncli()">查询</button>
+        </form>
+    </div>
+    <div style="float: right;margin-bottom: 15px">
+        <a class="btn btn-primary" href="add.html">添加用户</a>
+        <a id="delete" class="btn btn-primary" href="javascript:del()">删除选中</a>
+    </div>
+    <table border="1" class="table table-bordered table-hover">
+        <tr class="success">
+            <th>选择</th>
+            <th>编号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>籍贯</th>
+            <th>QQ</th>
+            <th>邮箱</th>
+            <th>超管</th>
+            <th>操作</th>
+        </tr>
+        <tbody id="info">
+<!--            <tr>-->
+<!--                <th>-->
+<!--                    <input id="2" type="checkbox">-->
+<!--                </th>-->
+<!--                <th>2</th>-->
+<!--                <th>李四</th>-->
+<!--                <th>男</th>-->
+<!--                <th>18</th>-->
+<!--                <th>西安</th>-->
+<!--                <th>295628068</th>-->
+<!--                <th>295628068@qq.com</th>-->
+<!--                <th>否</th>-->
+<!--                <th>-->
+<!--                    <a class="btn btn-default btn-sm" href="update.hytml?id=">修改</a>-->
+<!--                    <a class="btn btn-default btn-sm" href="javascript:void(0);">删除</a>-->
+<!--                </th>-->
+<!--            </tr>-->
+        </tbody>
+    </table>
+    <div>
+        <nav aria-label="Page navigation">
+            <ul id="all" class="pagination">
+                <li class="active"><a href="javascript:void(0);">1</a></li>
+                <li><a href="javascript:void(0);">2</a></li>
+                <li><a href="javascript:void(0);">3</a></li>
+                <li><a href="javascript:void(0);" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span></a>
+                </li>
+                <span style="font-size: 20px;margin-left: 10px;"> 共 10 条记录，共 1 页</span>
+            </ul>
+        </nav>
+    </div>
+</div>
+</body>
+
+<script>
+    // 查询的参数变量定义
+    var name = "";
+    var address = "";
+    var email = "";
+    var cpage = 1; // 当前页面
+    var psize = 5; // 每页显示条数
+
+    jQuery.getJSON("/user/getlist",
+        {
+            "name":name,
+            "address":address,
+            "email":email,
+            "cpage":cpage,
+            "psize":psize
+        },function (result) {
+            if (result != null && result.status == 0 && result.data.length > 0) {
+                //数据时合理的
+                //1.绑定列表数据
+                var listhtml = "";
+                for (var i = 0; i < result.data.length; i++) {
+                    var userinfo = result.data[i];
+                    listhtml += '<tr>\n' +
+                        '                <th>\n' +
+                        '                    <input id="'+userinfo.id+'" type="checkbox">\n' +
+                        '                </th>\n' +
+                        '                <th>'+userinfo.id+'</th>\n' +
+                        '                <th>'+userinfo.name+'</th>\n' +
+                        '                <th>'+userinfo.sex+'</th>\n' +
+                        '                <th>'+userinfo.age+'</th>\n' +
+                        '                <th>'+userinfo.address+'</th>\n' +
+                        '                <th>'+userinfo.qq+'</th>\n' +
+                        '                <th>'+userinfo.email+'</th>\n' +
+                        '                <th>'+ (userinfo.isadmin==0?"否":"是") +'</th>\n' +
+                        '                <th>\n' +
+                        '                    <a class="btn btn-default btn-sm" href="update.hytml?id='+userinfo.id+'">修改</a>\n' +
+                        '                    <a class="btn btn-default btn-sm" href="javascript:del('+userinfo.id+');">删除</a>\n' +
+                        '                </th>\n' +
+                        '            </tr>'
+                }
+                jQuery("#info").append(listhtml);
+
+                //2.绑定页面信息
+            }else {
+                alert("查询数据列表失败:"+result.message);
+            }
+    });
+
+</script>
+
+</html>
