@@ -136,13 +136,18 @@ public class UserController {
 
     //获取人员列表
     @RequestMapping("/getlist")
-    public ResponseBody<List<UserInfo>> getlist(String name, String address, String email,
+    public ResponseBody<HashMap<String,Object>> getlist(String name, String address, String email,
                                                         int cpage, int psize, HttpServletRequest request) {
+        int status = -1;
+        String message = "未知错误，请联系管理员";
+
         // 1.权限效验
         UserInfo user = SessionUtil.getUserBySession(request);
         if (user == null) {
             // 未登录
-            return new ResponseBody<>(-1, "当前用户未登录", null);
+            status = -2;
+            message = "当前用户未登录";
+            return new ResponseBody<>(status, message, null);
         }
         int isadmin = user.getIsadmin();
 
@@ -156,7 +161,49 @@ public class UserController {
         int skipCount = (cpage-1)*psize;
         //查询一页的信息
         List<UserInfo> list = userMapper.getListByPage(name,address,email,isadmin,skipCount,psize);
-        return new ResponseBody<>(0,"",list);
+
+        //4.查询满足条件的数据总条数
+        int tcount = userMapper.getCount(name,address,email,isadmin);
+        // 总页数
+        int tpage = (int)Math.ceil(tcount/(psize*1.0));
+
+        //5.没有下一页了，到头了
+        if (cpage > tpage) {
+            status = -3;
+            message = "没有下一页啦！";
+            return new ResponseBody<>(status, message, null);
+        }
+
+        //6.封装统一返回对象
+        HashMap<String,Object> data = new HashMap<>();
+        data.put("list",list);
+        data.put("tcount",tcount);
+        data.put("tpage",tpage);
+        return new ResponseBody<>(0,"",data);
+    }
+
+    //单条删除数据
+    @RequestMapping("/del")
+    public ResponseBody<Integer> del(@RequestParam int id,
+                                     HttpServletRequest request) {
+        int status = -1;
+        String message = "";
+        //权限效验
+        UserInfo user = SessionUtil.getUserBySession(request);
+        if (user == null) {
+            status = -2;
+            message = "未登录！";
+            return new ResponseBody<>(status,message,0);
+        }
+        //不能删除自己
+        if (user.getId() == id) {
+            status = -3;
+            message = "不能删除自己!";
+            return new ResponseBody<>(status,message,0);
+        }
+        int admin = user.getIsadmin();
+        int data = userMapper.del(id,admin);
+        return new ResponseBody<>(0,"",data);
     }
 
 }

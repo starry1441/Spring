@@ -26,6 +26,13 @@
         where id=#{id}
     </update>
 
+    <delete id="del">
+        delete from userinfo where id=#{id}
+        <if test="isadmin!=1">
+            and isadmin=#{isadmin}
+        </if>
+    </delete>
+
     <select id="login" resultType="com.example.usermanager.model.UserInfo">
         select * from userinfo where username=#{username} and password=#{password}
     </select>
@@ -38,13 +45,13 @@
         select * from userinfo
         <where>
             <if test="name!=''">
-                and name=#{name}
+                and name like concat('%',#{name},'%')
             </if>
             <if test="address!=''">
-                and address=#{address}
+                and address like concat('%',#{address},'%')
             </if>
             <if test="email!=''">
-                and email=#{email}
+                and email like concat('%',#{email},'%')
             </if>
             <if test="isadmin==0">
                 and isadmin=#{isadmin}
@@ -52,6 +59,24 @@
         </where>
         order by id desc
         limit #{skipCount},#{psize}
+    </select>
+
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from userinfo
+        <where>
+            <if test="name!=''">
+                and name like concat('%',#{name},'%')
+            </if>
+            <if test="address!=''">
+                and address like concat('%',#{address},'%')
+            </if>
+            <if test="email!=''">
+                and email like concat('%',#{email},'%')
+            </if>
+            <if test="isadmin==0">
+                and isadmin=#{isadmin}
+            </if>
+        </where>
     </select>
 
 </mapper>

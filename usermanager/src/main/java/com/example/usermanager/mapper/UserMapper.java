@@ -25,4 +25,8 @@ public interface UserMapper {
     public int update(UserInfo userInfo);
 
     public List<UserInfo> getListByPage(String name, String address, String email, int isadmin, int skipCount, int psize);
+
+    public int getCount(String name, String address, String email, int isadmin);
+
+    public int del(int id, int isadmin);
 }
