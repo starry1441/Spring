@@ -1,8 +1,10 @@
 package com.example.demo.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
@@ -16,9 +18,21 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class AppConfig implements WebMvcConfigurer {
 
+    //读取文件中的变量信息
+    @Value("${myimgpath}")
+    private String imgPath;
+
     @Override
     public void configurePathMatch(PathMatchConfigurer configurer) {
         configurer.addPathPrefix("api", c -> true);
+    }
+
+    //配置虚拟路径
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        //设置url访问地址，当访问/imges/**映射到虚拟路径上
+        registry.addResourceHandler("/imges/**")
+                .addResourceLocations("file:" + imgPath); //设置到本地目录
     }
 
     //配置拦截规则

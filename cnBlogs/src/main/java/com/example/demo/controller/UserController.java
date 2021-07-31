@@ -164,7 +164,7 @@ public class UserController {
 //        String path = ClassUtils.getDefaultClassLoader().
 //                getResource("static").getPath();
         String path = imgpath;
-        path += APPFinal.IMAGE_PAHT;
+//        path += APPFinal.IMAGE_PAHT;
         log.info("path:" + path);
         // 2.文件名（全局唯一id【UUID】）+文件的原始类型
         String fileType = file.getOriginalFilename(); // img.png
