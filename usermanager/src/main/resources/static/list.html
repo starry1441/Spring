@@ -40,7 +40,7 @@
     </div>
     <div style="float: right;margin-bottom: 15px">
         <a class="btn btn-primary" href="add.html">添加用户</a>
-        <a id="delete" class="btn btn-primary" href="javascript:del()">删除选中</a>
+        <a id="delete" class="btn btn-primary" href="javascript:delSel()">删除选中</a>
     </div>
     <table border="1" class="table table-bordered table-hover">
         <tr class="success">
@@ -128,7 +128,7 @@
                 "cpage":cpage,
                 "psize":psize
             },function (result) {
-                if (result != null && result.status == 0 && result.data.list.length > 0) {
+                if (result != null && result.status == 0 && result.data.list.length >= 0) {
                     //数据时合理的
                     //1.绑定列表数据
                     var listhtml = "";
@@ -177,7 +177,7 @@
                     }
                     jQuery("#all").html(pageHtml);
                 }else {
-                    alert("查询人员列表失败:"+result.message);
+                    alert("查询列表失败:"+result.message);
                 }
             }
         );
@@ -197,6 +197,37 @@
                     alert("抱歉，删除失败!" + result.message);
                 }
             });
+        }
+    }
+
+    //删除多条信息
+    function delSel() {
+        //1.获取需要删除的用户id集合
+        // alert(jQuery("#info").find("tr").length);
+        if (confirm("是否确认删除")) {
+            var ids = "";
+            jQuery("#info").find("tr").each(function (i) {
+                // jQuery(this) = 当前行tr
+                if (jQuery(this).find("th:first").find("input").prop("checked") == true) {
+                    // alert(jQuery(this).find("th:first").find("input").attr("id"));
+                    ids += (jQuery(this).find("th:first").find("input").attr("id") + ",");
+                }
+            });
+
+            if (ids != "") {
+                //2.访问后端接口进行删除操作
+                jQuery.getJSON("/user/dels",{"ids":ids},function (result) {
+                    if (result != null && result.status == 0 && result.data > 0) {
+                        alert("恭喜，删除成功！");
+                        location.href = location.href;
+                    } else {
+                        alert("抱歉，删除失败，"+result.message);
+                    }
+                });
+            } else {
+                //没有选择任何信息
+                alert("抱歉，您没有选中任何信息");
+            }
         }
     }
 

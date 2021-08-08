@@ -29,4 +29,6 @@ public interface UserMapper {
     public int getCount(String name, String address, String email, int isadmin);
 
     public int del(int id, int isadmin);
+
+    public int dels(String[] ids);
 }

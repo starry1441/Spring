@@ -48,6 +48,10 @@
                class="btn btn btn-primary" type="button" value="登录" onclick="mysub()">
     </div>
 
+    超级管理员账号：admin  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码：123
+    <br>
+    普通管理员账号：zhangfei &nbsp;&nbsp;&nbsp;&nbsp;密码：123
+
 </div>
 
 <script>
@@ -73,6 +77,7 @@
             function (result) {
                 if (result != null && result.status == 0) {
                     alert("登录成功!");
+                    location.href = "list.html";
                 }else {
                     //todo:安全限制（一定时间内输入次数过多，则触发安全限制）
                     alert("登陆失败!");
